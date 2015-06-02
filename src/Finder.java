@@ -138,6 +138,46 @@ public class Finder {
         return resultPhone;
         }
 
+    private void GetContents(File fileIn, File fileOut){
+        InputStream inputStream;
+        OutputStream outputStream;
+
+        try {
+            inputStream=new FileInputStream("input.txt");
+            outputStream=new FileOutputStream("output.txt");
+            BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream,"UTF8"));
+            BufferedWriter out=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF8"));
+            while(reader.ready()) {
+                StringBuffer textBuffer=new StringBuffer();
+                textBuffer.append(reader.readLine());
+                StringTokenizer tokenizer=new StringTokenizer(textBuffer.toString(), "|");
+
+                if (!tokenizer.hasMoreTokens()) continue;
+                String str = tokenizer.nextToken();
+                str= checkNameRegExp(str);
+                out.write(str+" ");
+                if (!tokenizer.hasMoreTokens()) continue;
+                str = tokenizer.nextToken();
+                out.write(checkAgeRegExp(str)+" ");
+                if (!tokenizer.hasMoreTokens()) continue;
+                str = tokenizer.nextToken();
+                out.write(checkPhoneRegExp(str)+" ");
+                if (!tokenizer.hasMoreTokens()) continue;
+                str = tokenizer.nextToken();
+                out.write(checkMailRegExp(str));
+                out.write("\n");
+            }
+            out.close();
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     public static void main(String[] args){
         /*Finder a = new Finder();
         File input = new File("D:\\projects\\lab3_pp\\src\\input.txt");
