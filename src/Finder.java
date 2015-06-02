@@ -179,10 +179,10 @@ public class Finder {
     }
 
     public static void main(String[] args){
-        /*Finder a = new Finder();
+        Finder a = new Finder();
         File input = new File("D:\\projects\\lab3_pp\\src\\input.txt");
         File output = new File("D:\\projects\\lab3_pp\\src\\out.txt");
 
-        a.GetContents(input, output);*/
+        a.GetContents(input, output);
     }
 }
